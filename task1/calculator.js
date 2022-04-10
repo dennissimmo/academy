@@ -1,5 +1,9 @@
 // Dots Calculator
 function calculate(input) {
+    if (!input) {
+        return '';
+    }
+
     let [firstOperand, operator, secondOperand] = input.split(' ');
     const firstLength = firstOperand.length;
     const secondLength = secondOperand.length;
@@ -21,11 +25,7 @@ function calculate(input) {
             return 'invalid operator';
     }
 
-    if (result === 0) {
-        return '';
-    }
-
-    return '.'.repeat(result);
+    return result === 0 ? '' : '.'.repeat(result);
 }
 
 // Improvised tests
@@ -39,3 +39,4 @@ console.log(calculate('..... // .') === '.....' ? 'passed' : 'failed');
 console.log(calculate('. // ..') === '' ? 'passed' : 'failed');
 console.log(calculate('. - .') === '' ? 'passed' : 'failed');
 console.log(calculate('.. % .') === 'invalid operator' ? 'passed' : 'failed');
+console.log(calculate(undefined) === '' ? 'passed' : 'failed');
